@@ -97,14 +97,16 @@ public class Logeo extends javax.swing.JFrame {
     private void btnAcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessActionPerformed
         // TODO add your handling code here:       
         try {
-            if (controlLogin.validarUsuario(txtusuario.getText(), controlCifrado.Encriptar("" + txtContra.getText()))) {
+             if (controlLogin.validarUsuario(txtusuario.getText(), controlCifrado.Encriptar("" + txtContra.getText()))) {
                 JOptionPane.showMessageDialog(null, "Bienvenido");
                 PRINCIPAL obj = new PRINCIPAL();
                 obj.show();
             } else {
-                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                JOptionPane.showMessageDialog(null, "Datos incorrectos. Verifica que tu usuario y contraseña sean los correctos");
             }
-
+ 
+            
+           
         } catch (Exception ex) {
             Logger.getLogger(Logeo.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -351,8 +351,9 @@ public class FRMatricula extends javax.swing.JInternalFrame {
             idGrado = cbxGrado.getItemAt(cbxGrado.getSelectedIndex()).getIdGrado();
             controlMatri.matricular(classSesion.getIdUsuario(), idAlum, idGrado);
             controlMatri.matricular(2, idAlum, idGrado);
+            JOptionPane.showMessageDialog(null, "Matrícula realizada con éxito");
         } else {
-            JOptionPane.showMessageDialog(null, "No ha hecho el pago de la matricula");
+            JOptionPane.showMessageDialog(null, "Debe realizar el pago de la matrícula");
         }
 
     }//GEN-LAST:event_btnMatricularActionPerformed
@@ -385,9 +386,15 @@ public class FRMatricula extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            // TODO add your handling code here:
+             if(this.tableAlumno.getSelectedRow()>=0){
+                 
             controlAlum.edit(classAlum);
             controlAlum.mostrarAlumno(tableAlumno);
+            }else{
+                 JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno de la tabla");
+             }
+            // TODO add your handling code here:
+           
         } catch (Exception ex) {
             Logger.getLogger(FRMatricula.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -104,6 +104,11 @@ public class FRDatosAlumnos extends javax.swing.JInternalFrame {
         cbxParent.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 
         btbCancelar.setText("Cancelar");
+        btbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -302,9 +307,7 @@ public class FRDatosAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnNuevoResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoResponsableActionPerformed
-        FRResponsable  Res = new FRResponsable();
-        PRINCIPAL.escritorio.add(Res);
-        Res.show();// TODO add your handling code here:
+        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnNuevoResponsableActionPerformed
 
@@ -329,7 +332,11 @@ public class FRDatosAlumnos extends javax.swing.JInternalFrame {
         idResp= cbxParent.getItemAt(cbxParent.getSelectedIndex()).getIdParentesco();
         idParen =cbxParent.getItemAt(cbxParent.getSelectedIndex()).getIdParentesco();
         try {
-            classResp.setIdResponsable(idResp);
+            if(txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty() || txtSalud.getText().isEmpty()
+                ||txtFechaNac.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Debe completar todos los datos solicitados");
+        }else{
+             classResp.setIdResponsable(idResp);
             classParentesco.setIdParentesco(idParen);
             classAlum.setNombre(txtNombre.getText().toLowerCase());
             classAlum.setApellido(txtApellido.getText().toLowerCase());
@@ -338,14 +345,34 @@ public class FRDatosAlumnos extends javax.swing.JInternalFrame {
             classAlum.setProblemasSalud(txtSalud.getText().toLowerCase());
             classAlum.setFechaNacimiento(txtFechaNac.getText().toLowerCase());
             conttrolAlumno.create(classAlum);
+            JOptionPane.showMessageDialog(this, "Registrado con éxito");
+        }
+           
         } catch (Exception e) {
         }
         //JOptionPane.showMessageDialog(null, cbxParent.getItemAt(cbxParent.getSelectedIndex()).getxtNombreco());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoResponsable1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoResponsable1ActionPerformed
+        FRResponsable Dat = new FRResponsable();
+        PRINCIPAL.escritorio.add(Dat); 
+        Dat.show();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoResponsable1ActionPerformed
+
+    private void btbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelarActionPerformed
+ if (JOptionPane.showConfirmDialog(rootPane, "Se perderá la información ya agregada en los campos. ¿Desea continuar?",
+        "Cancelar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+     this.txtNombre.setText("");
+     this.txtApellido.setText("");
+     this.txtResp.setText("");
+     this.txtSalud.setText("");
+     this.txtFechaNac.setText("");
+     
+ 
+    }
+// TODO add your handling code here:
+    }//GEN-LAST:event_btbCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

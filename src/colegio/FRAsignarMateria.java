@@ -11,6 +11,7 @@ import Acceso_Datos.UsuarioMate;
 import Logica_Negocios.UsuarioJpaController;
 import Logica_Negocios.MateriaJpaController;
 import Logica_Negocios.UsuarioMateJpaController;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -214,9 +215,13 @@ public class FRAsignarMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
         // TODO add your handling code here:
         try {
-            for (int i = 0; i <= TableMateProfe.getRowCount(); i++) {
+            if(this.TableMateProfe.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Debe agregar primero usuarios a la tabla");
+            }else{
+                for (int i = 0; i <= TableMateProfe.getRowCount(); i++) {
                 Usuario classUsuario = new Usuario();
                 Materia classMateria = new Materia();
                 UsuarioMate classUsMat = new UsuarioMate();
@@ -227,6 +232,9 @@ public class FRAsignarMateria extends javax.swing.JInternalFrame {
                 classUsMat.setIdMateria(classMateria);
                 classUsMat.setIdUsuario(classUsuario);
                 controAddMta.create(classUsMat);
+                JOptionPane.showMessageDialog(this, "Almacenados con éxito"); 
+            }
+           
             }
         } catch (Exception e) {
         }

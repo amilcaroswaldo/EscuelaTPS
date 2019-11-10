@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -210,6 +211,8 @@ public class FRSalonClase extends javax.swing.JInternalFrame {
             classGrado.setIdSeccion(clasSeccion);
             controlGrado.create(classGrado);
             controlGrado.mostrarGrado(tableGrado);
+             JOptionPane.showMessageDialog(this, "Salón creado exitosamente");
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -219,9 +222,12 @@ public class FRSalonClase extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtYearActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:  
         try {
-            // TODO add your handling code here:
-            controlGrado.destroy(idGrado);
+             if (JOptionPane.showConfirmDialog(rootPane, "Se eliminará el salón seleccionado. ¿Desea continuar?",
+        "Eliminar salón", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                 controlGrado.destroy(idGrado);
+             }       
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(FRSalonClase.class.getName()).log(Level.SEVERE, null, ex);
         }

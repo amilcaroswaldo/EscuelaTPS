@@ -170,6 +170,11 @@ public class FRempleado extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -364,7 +369,13 @@ public class FRempleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtApellidoEmpActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    
         try {
+            
+            if(txtNombreEmp.getText().isEmpty()||txtApellidoEmp.getText().isEmpty() ||txtDUiEmp.getText().isEmpty()
+                    || jfFechaNac.getText().isEmpty() || txtContraEmp.getText().isEmpty() || txtUsuarioEmp.getText().isEmpty() ){
+                JOptionPane.showMessageDialog(this, "Debes completar todos lo campos");
+            }else{
             idTipo = comboPrivilegioEmp.getItemAt(comboPrivilegioEmp.getSelectedIndex()).getIdTipo();
             classTipo.setIdTipo(idTipo);
             classUsario.setNombre(txtNombreEmp.getText() + "");
@@ -375,10 +386,13 @@ public class FRempleado extends javax.swing.JInternalFrame {
             String passw = txtContraEmp.getText() + "";
             classUsario.setPass(classCifrado.Encriptar(passw));
             classUsario.setEstado('A');
-            classUsario.setNomusuario(txtNombreEmp.getText() + "");
+            classUsario.setNomusuario(txtUsuarioEmp.getText() + "");
             classUsario.setTelefono(txtTelEmp.getText() + "");
             controlUsuario.create(classUsario);
             controlUsuario.mostrarUsuario(tableUsuarios);
+            JOptionPane.showMessageDialog(this, "Usuario almacenado con éxito");
+            }
+           
         } catch (Exception ex) {
             Logger.getLogger(FRempleado.class.getName()).log(Level.SEVERE, null, ex);
         }        // TODO add your handling code here:
@@ -414,6 +428,9 @@ public class FRempleado extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:         
         try {
+            if(this.tableUsuarios.getSelectedRow()>=0){
+                 if (JOptionPane.showConfirmDialog(rootPane, "Se modificará al usuario. ¿Desea continuar?",
+        "Modificar Usuario", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             idTipo = comboPrivilegioEmp.getItemAt(comboPrivilegioEmp.getSelectedIndex()).getIdTipo();
             classTipo.setIdTipo(idTipo);
             classUsario.setIdUsuario(idUser);
@@ -429,6 +446,10 @@ public class FRempleado extends javax.swing.JInternalFrame {
             classUsario.setTelefono(txtTelEmp.getText() + "");
             controlUsuario.edit(classUsario);
             controlUsuario.mostrarUsuario(tableUsuarios);
+              }
+            }else{
+                 JOptionPane.showMessageDialog(this, "Debe seleccionar un usuarios de la tabla");
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(FRempleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -440,7 +461,10 @@ public class FRempleado extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
-            DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
+            if(this.tableUsuarios.getSelectedRow()>=0){
+                      if (JOptionPane.showConfirmDialog(rootPane, "Se eliminará al usuario seleccionado. ¿Desea continuar?",
+        "Eliminar Usuario", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                 DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
             idTipo = comboPrivilegioEmp.getItemAt(comboPrivilegioEmp.getSelectedIndex()).getIdTipo();
             classTipo.setIdTipo(idTipo);
             classUsario.setIdUsuario(idUser);
@@ -456,7 +480,11 @@ public class FRempleado extends javax.swing.JInternalFrame {
             classUsario.setTelefono(txtTelEmp.getText() + "");
             controlUsuario.edit(classUsario);
             controlUsuario.mostrarUsuario(tableUsuarios);
-
+             }
+            }else{
+                 JOptionPane.showMessageDialog(this, "Debe seleccionar un usuarios de la tabla");
+            }
+       
         } catch (Exception ex) {
             Logger.getLogger(FRempleado.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error" + ex.getMessage());
@@ -466,7 +494,34 @@ public class FRempleado extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
+        this.txtNombreEmp.setText("");
+        this.txtApellidoEmp.setText("");
+        this.txtContraEmp.setText("");
+        this.txtDUiEmp.setText("");
+        this.txtTelEmp.setText("");
+        this.txtUsuarioEmp.setText("");
+        this.jfFechaNac.setText("");
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+         if(txtNombreEmp.getText().isEmpty()&& txtApellidoEmp.getText().isEmpty() && txtDUiEmp.getText().isEmpty()
+                    && jfFechaNac.getText().isEmpty() && txtContraEmp.getText().isEmpty() && txtUsuarioEmp.getText().isEmpty() ){
+                JOptionPane.showMessageDialog(this, "No hay datos agregados en los campos");
+            }else{
+              if (JOptionPane.showConfirmDialog(rootPane, "Se perderá la información ya agregada en los campos. ¿Desea continuar?",
+        "Cancelar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+        this.txtNombreEmp.setText("");
+        this.txtApellidoEmp.setText("");
+        this.txtContraEmp.setText("");
+        this.txtDUiEmp.setText("");
+        this.txtTelEmp.setText("");
+        this.txtUsuarioEmp.setText("");
+        this.jfFechaNac.setText("");  
+         }
+         }
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -254,9 +254,14 @@ public class FRResponsable extends javax.swing.JInternalFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-       FRDatosAlumnos dat = new FRDatosAlumnos();
-       dat.show();
-       this.dispose();
+        
+         if (JOptionPane.showConfirmDialog(rootPane, "Se perderá la información ya agregada en los campos. ¿Desea continuar?",
+        "Cancelar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+             FRDatosAlumnos dat = new FRDatosAlumnos();
+             dat.show();
+             this.dispose();
+         }
+       
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtDirecResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecResActionPerformed
@@ -266,7 +271,14 @@ public class FRResponsable extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          try {
-            claseResp.setNombre(txtNombreRes.getText()+"");
+             
+             if(txtNombreRes.getText().isEmpty() || txtApellidoRes.getText().isEmpty() || txtDirecRes.getText().isEmpty() ||
+                   txtDirecTrabajo.getText().isEmpty() || txtDUIRes.getText().isEmpty() || txtLugarTrabajoRes.getText().isEmpty()
+                     || txtProfesionRes.getText().isEmpty() || txtTeleRes.getText().isEmpty() || txtTeleTrabajoRes.getText().isEmpty()
+                     ){
+                  JOptionPane.showMessageDialog(this, "Debe completar todos los datos solicitados");
+             }else{
+                 claseResp.setNombre(txtNombreRes.getText()+"");
             claseResp.setApellido(txtApellidoRes.getText()+"");
             claseResp.setDireccion(txtDirecRes.getText()+"");
             claseResp.setDireccionTrabajo(txtDirecTrabajo.getText()+"");
@@ -277,6 +289,9 @@ public class FRResponsable extends javax.swing.JInternalFrame {
             claseResp.setTelefonoTrabajo(txtTeleTrabajoRes.getText()+"");
             System.out.println(claseResp.getApellido()+""+claseResp.getNombre()+""+claseResp.getTelefono()+""+ claseResp.getTelefonoTrabajo());
             controlResp.create(claseResp);
+            JOptionPane.showMessageDialog(this, "Registrado con éxito");
+             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: "+ e.getMessage());
         }

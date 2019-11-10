@@ -9,6 +9,7 @@ import Acceso_Datos.Materia;
 import Logica_Negocios.exceptions.NonexistentEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -161,8 +162,14 @@ public class FRMaterias extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         try {
+            if(txtMateria.getText().isEmpty()){
+              JOptionPane.showMessageDialog(this, "Debes agregar una materia");
+        }else{
             clasMateria.setMateria(txtMateria.getText()+"");
             controlMateria.create(clasMateria);
+             JOptionPane.showMessageDialog(this, "Almacenada con éxito");
+            }
+           
         } catch (Exception ex) {
             Logger.getLogger(FRMaterias.class.getName()).log(Level.SEVERE, null, ex);
         }
