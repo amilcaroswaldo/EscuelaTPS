@@ -49,6 +49,7 @@ public class FRResponsable extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         txtDirecTrabajo = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -141,6 +142,8 @@ public class FRResponsable extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -180,6 +183,10 @@ public class FRResponsable extends javax.swing.JInternalFrame {
                             .addComponent(btnSalir)
                             .addComponent(jButton2))))
                 .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +214,9 @@ public class FRResponsable extends javax.swing.JInternalFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(20, 20, 20)
                         .addComponent(btnSalir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
@@ -300,6 +309,7 @@ public class FRResponsable extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
